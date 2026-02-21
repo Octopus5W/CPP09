@@ -12,11 +12,11 @@ class BitcoinExchange
 	public:
 		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &copy);
-		BitcoinExchange &operator=(const BitcoinExchange &assign);
+		BitcoinExchange &operator=(const BitcoinExchange &copy);
 		~BitcoinExchange();
 
 		void readData();
-		void readInput(const std::string &ile);
+		void readInput(const std::string &inputFile);
 };
 
 #endif
