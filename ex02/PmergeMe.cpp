@@ -402,7 +402,10 @@ bool PmergeMe::run(int ac, char **av)
 	std::vector<int> _vector;
 	std::list<int> _list;
 	if (!pmergeme.parseArgs(ac, av, _vector, _list))
-		return (false);
+	return (false);
+	
+	std:: cout << "Before: ";
+	pmergeme.print(_vector);
 
 	std::clock_t vecStart = std::clock();
 	pmergeme.fordJohnsonVector(_vector);
@@ -412,10 +415,6 @@ bool PmergeMe::run(int ac, char **av)
 	pmergeme.fordJohnsonList(_list);
 	double listUs = (std::clock() - listStart) * 1000000.0 / CLOCKS_PER_SEC;
 
-
-	std:: cout << "Before: ";
-	pmergeme.print(_vector);
-	
 	std::cout << "After:  ";
 	pmergeme.print(_vector);
 	std::cout << "Time to process a range of " << _vector.size()
