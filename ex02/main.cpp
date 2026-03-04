@@ -3,11 +3,10 @@
 
 int main(int argc, char **argv)
 {
-	if (argc < 2)
+	if (argc < 4)
 	{
 		std::cerr << "Error" << std::endl;
 		return (1);
 	}
-	PmergeMe::run(argc, argv);
-	return (0);
+	return (PmergeMe::run(argc, argv) ? 0 : 1);
 }
