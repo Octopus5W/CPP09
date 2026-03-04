@@ -130,7 +130,7 @@ void BitcoinExchange::readInput(const std::string &inputFile)
 {
 	if (_data.empty())
 	{
-		std::cerr << "Error: input file is empty." << std::endl;
+		std::cerr << "Error: data file is empty." << std::endl;
 		return;
 	}
 

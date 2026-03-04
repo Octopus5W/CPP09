@@ -39,7 +39,10 @@ bool PmergeMe::parseArgs(int ac, char **av, std::vector<int> &_vector, std::list
 		for (std::size_t j = 0; av[i][j] != '\0'; ++j)
 		{
 			if (!std::isdigit(static_cast<unsigned char>(av[i][j])))
+			{
+				std::cerr << "Error: invalid argument: " << av[i] << std::endl;
 				return (false);
+			}
 		}
 
 		errno = 0;
@@ -47,7 +50,10 @@ bool PmergeMe::parseArgs(int ac, char **av, std::vector<int> &_vector, std::list
 		long value = std::strtol(av[i], &end, 10);
 
 		if (errno == ERANGE || *end != '\0' || value <= 0 || value > INT_MAX)
+		{
+			std::cerr << "Error: invalid argument: " << av[i] << std::endl;
 			return (false);
+		}
 
 		_vector.push_back(value);
 		_list.push_back(value);
@@ -407,10 +413,10 @@ bool PmergeMe::run(int ac, char **av)
 	double listUs = (std::clock() - listStart) * 1000000.0 / CLOCKS_PER_SEC;
 
 
-	std::cout << "----------------------------------------" << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
-
+	std:: cout << "Before: ";
+	pmergeme.print(_vector);
+	
+	std::cout << "After:  ";
 	pmergeme.print(_vector);
 	std::cout << "Time to process a range of " << _vector.size()
 		<< " elements with std::vector : " << vecUs << " us" << std::endl;
